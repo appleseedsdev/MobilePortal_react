@@ -1,0 +1,54 @@
+<div ng-if="isAdmin" id="wrapper">
+    <header></header>
+    <div id="page-wrapper">
+        <div class="panel-body">
+            <div class="container-fluid">
+                <div class="p-3 mb-2 bg-primary text-white">
+                    <h3 style=" text-align: center"  ng-click="AddNetaCandidatesViewers()"> משתמשים שרואים מסך מועמדים</h3>
+                </div>
+
+                <table class="table">
+                    <thead class="fixed-tbl">
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">userId</th>
+                        <th scope="col">שם</th>
+                        <th scope="col">כתובת אי-מייל</th>
+                    </tr>
+                    </thead>
+                    <tbody class="fixed-tbl">
+                        <tr ng-repeat="viewer in NetaCandidatesViewers">
+                            <td class="row-action fixed-col0" ng-click="DeleteViewer(viewer)">
+                                <img src="./img/Xicon.png"/>
+                            </td>
+                            <td>{{viewer.userid}}</td>
+                            <td>{{viewer.name}}</td>
+                            <td>{{viewer.email}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="tab-content">
+                 <button type="button" class="btn btn-info" ng-click="OpenNetaCandidatesViewersPopUp()"> הוספה</button>
+            </div>
+
+            <popup visibility="ShowNetaCandidatesViewersPopUp">
+                <div class="popup-header">בחירת משתמשים</div>
+                <div class="popup-content-wrap">
+                    <search-selector on-search="searchNetaCandidatesViewers" on-select="addNetaCandidatesViewersToList" value-index="'userid'" text-index="'name'" search-placeholder="'חיפוש משתמש'" results-arr-index="'NetaCandidatesViewers'" selected="toAssignNetaCandidatesViewers"></search-selector>
+                </div>
+                <div class="popup-controls">
+                    <div class="popup-control popup-approve" ng-click="commitNewNetaCandidatesViewers()">אישור</div>
+                    <div class="popup-control popup-cancel" ng-click="CloseNetaCandidatesViewersPopUp()">ביטול</div>
+                </div>
+            </popup>
+
+            <hr>
+            <div class="card-controls">
+                <button  type="submit" class="button card-control commit-card-edit" ng-click="Save()">שמירה</button>
+                <button  type="button" class="button card-control cancel-card-edit" ng-click="Cancel()">ביטול</button>
+            </div>
+        </div>
+   </div>
+</div>
+

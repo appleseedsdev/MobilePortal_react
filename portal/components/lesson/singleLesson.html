@@ -1,0 +1,35 @@
+<div id="wrapper">
+<header></header>
+<div id="page-wrapper">
+    <p>שיעור {{lessonNum}}</p>
+        <div class="scrolling-table-wrapper">
+            <div class="scrolling-table">
+                <table class="table-striped table-bordered table-hover midrows">
+                    <thead >
+                        <tr>
+                            <th class="small-cell">שם פרטי</th>
+                            <th class="small-cell">שם משפחה</th>
+                            <th class="large-cell">סטטוס נוכחות בשיעור</th>
+                        </tr>
+                    </thead>
+                    <tbody >
+                        <tr ng-repeat="student in lesson">
+                            <td class="small-cell" >{{student.firstname}}</td>
+                            <td class="small-cell" >{{student.lastname}}</td>
+                            <td  class="large-cell">
+                                <select ng-model="student.attendanceStatus"
+                                        ng-change="UpdateCheckStudentStatus(student)"
+                                        ng-options="status.statusid as status.name for status in AttendanceStatuses">
+                                </select>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="card-controls">
+            <button type="button" class="button card-control cancel-card-edit" ng-click="goBack()">חזרה לקורס</button>
+        </div>
+        <br>
+    </div>
+</div>
